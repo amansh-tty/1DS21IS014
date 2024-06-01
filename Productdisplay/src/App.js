@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import ProductGrid from "./components/GridLayout";
 
 const App = () => {
+
   const [products, setProducts] = useState([
     {
         "productName": "Laptop 1",
@@ -78,11 +79,16 @@ const App = () => {
         "availability": "out-of-stock"
     }
 ]);
+
   useEffect(() => {
+
+const TOKEN = process.env.TOKEN;
+
+    
     const myHeaders = new Headers();
     myHeaders.append(
       "Authorization",
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZXhwIjoxNzE3MjIxMjQ2LCJpYXQiOjE3MTcyMjA5NDYsImlzcyI6IkFmZm9yZG1lZCIsImp0aSI6IjM2NzMyYmI3LWMzYTItNGNmNC1iNTg2LWE3MTZhNjRmZDI3MSIsInN1YiI6ImFtYW5zaGV0dHkzMDBAZ21haWwuY29tIn0sImNvbXBhbnlOYW1lIjoiQ2FybmVsIiwiY2xpZW50SUQiOiIzNjczMmJiNy1jM2EyLTRjZjQtYjU4Ni1hNzE2YTY0ZmQyNzEiLCJjbGllbnRTZWNyZXQiOiJmdEZnUFhVdGhsdWlvWXd1Iiwib3duZXJOYW1lIjoiQW1hbiBBIFNoZXR0eSIsIm93bmVyRW1haWwiOiJhbWFuc2hldHR5MzAwQGdtYWlsLmNvbSIsInJvbGxObyI6IjFEUzIxSVMwMTQifQ.af9gwpD88Ljcjuo66ioPM5g5TRrW2E1xa01UgRep7l4"
+      `Bearer ${TOKEN}`
     );
     myHeaders.append("Access-Control-Allow-Origin", "*");
     myHeaders.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
@@ -93,7 +99,7 @@ const App = () => {
     };
 
     fetch(
-      "http://20.244.56.144/test/companies/AMZ/categories/Laptop/products?top=10&minPrice=1&maxPrice=10000",
+      "https://cors-anywhere.herokuapp.com/http://20.244.56.144/test/companies/AMZ/categories/Laptop/products?top=10&minPrice=1&maxPrice=10000",
       requestOptions
     )
       .then((response) => response.text())
